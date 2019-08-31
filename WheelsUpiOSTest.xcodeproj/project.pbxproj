@@ -12,6 +12,10 @@
 		5E422BE723164E0D00CCC88B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E422BE523164E0D00CCC88B /* Main.storyboard */; };
 		5E422BE923164E0E00CCC88B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E422BE823164E0E00CCC88B /* Assets.xcassets */; };
 		5E422BEC23164E0E00CCC88B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E422BEA23164E0E00CCC88B /* LaunchScreen.storyboard */; };
+		5ED5D50B2319F6BF00932021 /* HTTPLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5D5092319F6BF00932021 /* HTTPLayer.swift */; };
+		5ED5D50C2319F6BF00932021 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5D50A2319F6BF00932021 /* APIClient.swift */; };
+		5ED5D50E2319F98E00932021 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5D50D2319F98E00932021 /* RootViewModel.swift */; };
+		5ED5D5112319FBFA00932021 /* Int_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED5D5102319FBFA00932021 /* Int_Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		5E422BE823164E0E00CCC88B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E422BEB23164E0E00CCC88B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E422BED23164E0E00CCC88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5ED5D5092319F6BF00932021 /* HTTPLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPLayer.swift; sourceTree = "<group>"; };
+		5ED5D50A2319F6BF00932021 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		5ED5D50D2319F98E00932021 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		5ED5D5102319FBFA00932021 /* Int_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int_Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,7 @@
 		5E422BE023164E0D00CCC88B /* WheelsUpiOSTest */ = {
 			isa = PBXGroup;
 			children = (
+				5ED5D50F2319FBEE00932021 /* Extensions */,
 				5ED5D5082319F5C900932021 /* Networking */,
 				5ED5D5072319F5B300932021 /* Storyboards */,
 				5ED5D5062319F58D00932021 /* SupportingFiles */,
@@ -84,6 +93,7 @@
 		5ED5D5042319F57C00932021 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				5ED5D50D2319F98E00932021 /* RootViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -116,8 +126,18 @@
 		5ED5D5082319F5C900932021 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				5ED5D50A2319F6BF00932021 /* APIClient.swift */,
+				5ED5D5092319F6BF00932021 /* HTTPLayer.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		5ED5D50F2319FBEE00932021 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5ED5D5102319FBFA00932021 /* Int_Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,8 +211,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ED5D50E2319F98E00932021 /* RootViewModel.swift in Sources */,
 				5E422BE423164E0D00CCC88B /* RootViewController.swift in Sources */,
 				5E422BE223164E0D00CCC88B /* AppDelegate.swift in Sources */,
+				5ED5D5112319FBFA00932021 /* Int_Extensions.swift in Sources */,
+				5ED5D50B2319F6BF00932021 /* HTTPLayer.swift in Sources */,
+				5ED5D50C2319F6BF00932021 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

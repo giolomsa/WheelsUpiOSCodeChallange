@@ -10,9 +10,12 @@ import UIKit
 
 class RootViewController: UIViewController {
 
+    let viewModel = RootViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        viewModel.loadRoot()
     }
 
 
