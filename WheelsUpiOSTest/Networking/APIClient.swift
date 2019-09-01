@@ -24,7 +24,7 @@ class APIClient{
     
     func getRootObjects(completion: @escaping (Result<[String: String]>)-> Void){
         
-        self.httpLayer.request(at: .root) { (data, response, error) in
+        self.httpLayer.request(at: .root("")) { (data, response, error) in
             guard let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode.isSuccessHTTPCode,
                 let data = data
@@ -42,8 +42,48 @@ class APIClient{
             }catch let error{
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func getCategoriesDetails(url: String, completion: @escaping (Result<CategoriesResults>)-> Void){
+        
+        self.httpLayer.request(at: .loadUrl(url)) { (data, response, error) in
+            guard let httpResponse = response as? HTTPURLResponse,
+                httpResponse.statusCode.isSuccessHTTPCode,
+                let data = data
+                else {
+                    
+                    if let error = error{
+                        completion(.failure(error as NSError))
+                    }
+                    return
+            }
+            do{
+                let decoder = JSONDecoder()
+                let rootTitles = try decoder.decode(CategoriesResults.self, from: data)
+                completion(.success(rootTitles))
+            }catch let error{
+                print(error.localizedDescription)
+            }
             
             
+        }
+    }
+    
+    func getCategoryItems(url: String, completion: @escaping (Result<Data>)-> Void){
+        
+        self.httpLayer.request(at: .loadUrl(url)) { (data, response, error) in
+            guard let httpResponse = response as? HTTPURLResponse,
+                httpResponse.statusCode.isSuccessHTTPCode,
+                let data = data
+                else {
+                    
+                    if let error = error{
+                        completion(.failure(error as NSError))
+                    }
+                    return
+            }
+                completion(.success(data))            
         }
     }
 }

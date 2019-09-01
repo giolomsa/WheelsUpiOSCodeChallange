@@ -15,7 +15,7 @@ class RootViewModel{
     let httpLayer = HTTPLayer()
     let networking: APIClient
     
-    var titles: [String] = []{
+    var titles: [RootCategory] = []{
         didSet{
             print("titles were set")
             NotificationCenter.default.post(name: RootViewModel.rootTitlesWereSetNotification, object: nil)
@@ -27,18 +27,20 @@ class RootViewModel{
     }
     
     func loadRoot(){
-        networking.getRootObjects { (result) in
+        networking.getRootObjects {[weak self] (result) in
             switch result{
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(let titles):
-                print(titles)
-                var _titles = [String]()
+                var _titles = [RootCategory]()
                 
-                for title in titles.keys{
-                    _titles.append(title)
+                for title in titles{
+                    let rootTitle = RootCategory(name: title.key, url: title.value, category: RootCategory.SWCategoryType(rawValue: title.key) ?? RootCategory.SWCategoryType.films)
+                    _titles.append(rootTitle)
                 }
-                self.titles = _titles
+                self?.titles = _titles.sorted(by: {
+                    $0.title < $1.title
+                })
             }
         }
     }

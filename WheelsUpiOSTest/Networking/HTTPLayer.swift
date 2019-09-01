@@ -11,27 +11,31 @@ import Foundation
 class HTTPLayer{
     
     let baseURLString = "https://swapi.co/api/"
-//    let iconBaseURL = "http://openweathermap.org/img/wn/"
-//    let iconExtension = "@2x.png"
-//    let apiKey = "&units=imperial&appid=8709616a9d372207ada686ff175b754f"
     let urlSession = URLSession.shared
     
-    enum Endpoint: String{
-        typealias RawValue = String
-        
-        case root = ""
-        case films = "films/"
-        case people = "people/"
-        case planets = "planets/"
-        case species = "species/"
-        case starships = "starships/"
-        case vehicles = "vehicles/"
+    enum Endpoint{
+        case root(String)
+        case loadUrl(String)
 
+        var path: String{
+            switch self {
+            case .root(_):
+                return ""
+            case .loadUrl(let url):
+                return url
+            }
+        }
     }
     
     func request(at endpoint: Endpoint, completion: @escaping (Data?, URLResponse?, Error?)-> Void){
-                
-        let fullURLString = baseURLString + endpoint.rawValue
+        var fullURLString = ""
+        switch endpoint{
+        case .root(_):
+            fullURLString = baseURLString
+        case .loadUrl(_):
+            fullURLString = endpoint.path
+        }
+        
         
         print(fullURLString)
         let url = URL(string: fullURLString)
