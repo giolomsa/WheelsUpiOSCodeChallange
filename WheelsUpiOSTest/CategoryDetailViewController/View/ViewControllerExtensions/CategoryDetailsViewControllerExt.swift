@@ -50,6 +50,8 @@ extension CategoryDetailViewController: UITableViewDelegate, UITableViewDataSour
             
             cell.initialsBackgroundView.layer.cornerRadius = cell.initialsBackgroundView.frame.width/2
             
+            cell.selectionStyle = .none
+            
             return cell
             
         }else{

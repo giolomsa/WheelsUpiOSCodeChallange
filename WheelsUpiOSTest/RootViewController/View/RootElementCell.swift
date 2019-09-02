@@ -21,16 +21,11 @@ class RootElementCell: UITableViewCell {
         
         // add shadow
         self.whiteBackgroundView.layer.cornerRadius = 5.0
-        let shadowSize : CGFloat = 2.0
-        let shadowPath = UIBezierPath(rect: CGRect(x: -shadowSize / 2,
-                                                   y: -shadowSize / 2,
-                                                   width: self.whiteBackgroundView.frame.size.width + shadowSize,
-                                                   height: self.whiteBackgroundView.frame.size.height + shadowSize))
+
         self.whiteBackgroundView.layer.masksToBounds = false
         self.whiteBackgroundView.layer.shadowColor = UIColor.gray.cgColor
-        self.whiteBackgroundView.layer.shadowOffset = CGSize(width: 0.8, height: 0.8)
+        self.whiteBackgroundView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         self.whiteBackgroundView.layer.shadowOpacity = 0.8
-        self.whiteBackgroundView.layer.shadowPath = shadowPath.cgPath
 
         
     }
