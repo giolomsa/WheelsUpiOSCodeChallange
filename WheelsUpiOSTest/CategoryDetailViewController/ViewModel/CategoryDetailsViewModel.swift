@@ -18,7 +18,6 @@ class CategoryDetailsViewMode{
     var categoryElements: [CategoryElement] = []{
         didSet{
             NotificationCenter.default.post(name: CategoryDetailsViewMode.categoryElementsWereSetNotification, object: nil)
-            
         }
     }
     

@@ -11,6 +11,7 @@ import UIKit
 class ItemDetailsViewController: UIViewController {
 
     //MARK:- IBOutlets
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var propertyContainerView: UIView!
     @IBOutlet weak var initialsBackgroundView: UIView!
     @IBOutlet weak var initialsLabel: UILabel!
@@ -28,6 +29,8 @@ class ItemDetailsViewController: UIViewController {
         
         manageObservers()
         customizeUI()
+        
+        scrollView.contentSize = CGSize(width: 100, height: 2000)
         
         activityIndicator.startAnimating()
         
@@ -66,7 +69,7 @@ class ItemDetailsViewController: UIViewController {
                     // set view frame
                     propertyDetail.frame = CGRect(x: 0, y: current, width: Int(width), height: 145)
                     current += 145
-                    
+
                     // set key label text
                     if let keyLabel = propertyDetail.viewWithTag(1) as? UILabel{
                         keyLabel.text = property.key.capitalizedStringFromSnakeCase
@@ -101,6 +104,13 @@ class ItemDetailsViewController: UIViewController {
                     }
                     // add custom view to container view
                     self.propertyContainerView.addSubview(propertyDetail)
+                    
+                }
+                DispatchQueue.main.async {
+                    self.propertyContainerView.frame = CGRect(x: self.propertyContainerView.frame.minX ,
+                                                              y: self.propertyContainerView.frame.minY,
+                                                              width: self.propertyContainerView.frame.width,
+                                                              height: CGFloat(current + 300))
                 }
             }
             
@@ -122,6 +132,7 @@ class ItemDetailsViewController: UIViewController {
             setDescriptionLabel()
             
         }
+        
         // stop and hide activity indicator after setting all properties
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
