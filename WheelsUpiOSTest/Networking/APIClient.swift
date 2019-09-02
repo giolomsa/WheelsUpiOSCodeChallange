@@ -22,14 +22,14 @@ class APIClient{
         self.httpLayer = httpLayer
     }
     
+    //load root items
     func getRootObjects(completion: @escaping (Result<[String: String]>)-> Void){
         
-        self.httpLayer.request(at: .root("")) { (data, response, error) in
+        self.httpLayer.request(at: .root) { (data, response, error) in
             guard let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode.isSuccessHTTPCode,
                 let data = data
                 else {
-                    
                     if let error = error{
                         completion(.failure(error as NSError))
                     }
@@ -37,17 +37,18 @@ class APIClient{
                 }
             do{
                 let decoder = JSONDecoder()
-                let rootTitles = try decoder.decode([String: String].self, from: data)
-                completion(.success(rootTitles))
+                let rootItems = try decoder.decode([String: String].self, from: data)
+                completion(.success(rootItems))
             }catch let error{
                 print(error.localizedDescription)
             }
         }
     }
     
-    func getCategoriesDetails(url: String, completion: @escaping (Result<CategoriesResults>)-> Void){
+    //load category items from selected category using url
+    func getCategoryElements(urlString: String, completion: @escaping (Result<CategoriesResults>)-> Void){
         
-        self.httpLayer.request(at: .loadUrl(url)) { (data, response, error) in
+        self.httpLayer.request(at: .fromUrl(urlString)) { (data, response, error) in
             guard let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode.isSuccessHTTPCode,
                 let data = data
@@ -60,19 +61,18 @@ class APIClient{
             }
             do{
                 let decoder = JSONDecoder()
-                let rootTitles = try decoder.decode(CategoriesResults.self, from: data)
-                completion(.success(rootTitles))
+                let categoryElements = try decoder.decode(CategoriesResults.self, from: data)
+                completion(.success(categoryElements))
             }catch let error{
                 print(error.localizedDescription)
             }
-            
-            
         }
     }
     
-    func getCategoryItems(url: String, completion: @escaping (Result<Data>)-> Void){
+    //load selected elements details
+    func getElementDetails(urlString: String, completion: @escaping (Result<Data>)-> Void){
         
-        self.httpLayer.request(at: .loadUrl(url)) { (data, response, error) in
+        self.httpLayer.request(at: .fromUrl(urlString)) { (data, response, error) in
             guard let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode.isSuccessHTTPCode,
                 let data = data

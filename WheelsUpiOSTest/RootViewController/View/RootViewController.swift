@@ -10,6 +10,7 @@ import UIKit
 
 class RootViewController: UIViewController {
 
+    //MARK:- Variables/Constants
     let viewModel = RootViewModel()
     var selectedCategory: RootCategory?
     
@@ -17,24 +18,28 @@ class RootViewController: UIViewController {
     @IBOutlet weak var rootTitleTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    
+    //MARK:- lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.navigationItem.title = "STAR WAR API"
         
+        //manage tableview delegate/datasource
         rootTitleTableView.delegate = self
         rootTitleTableView.dataSource = self
         
+        //
         manageObservers()
         customizeUI()
         
+        //loading root elements on background thread
         DispatchQueue.global(qos: .background).sync {
-            self.viewModel.loadRoot()
+            self.viewModel.loadRootElements()
         }
     }
 
+    // prepare segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? CategoryDetailViewController{
             destination.selectedCategory = self.selectedCategory
@@ -43,12 +48,12 @@ class RootViewController: UIViewController {
     
     //MARK:- Class methods
     private func manageObservers(){
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUIFromViewModel) , name: RootViewModel.rootTitlesWereSetNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUIFromViewModel) , name: RootViewModel.rootElementsWereSetNotification, object: nil)
     }
     
-    private func customizeUI(){
-       
+    private func customizeUI(){       
         activityIndicator.startAnimating()
+        //customize navigationbar
         navigationController?.navigationBar.barTintColor = UIColor(red: 50/255, green: 49/255, blue: 51/255, alpha: 100)
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationItem.backBarButtonItem?.title = ""

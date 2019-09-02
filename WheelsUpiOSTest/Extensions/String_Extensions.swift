@@ -25,4 +25,18 @@ extension String{
     var capitalizedStringFromSnakeCase: String{
         return self.replacingOccurrences(of: "_", with: " ").capitalized
     }
+    
+    var iso8601StringToLocaleDateString:String{
+        
+        let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        
+        let updatedAt = dateFormatter.date(from: self)
+        
+            dateFormatter.locale = Locale.current
+            dateFormatter.timeZone = .current
+            dateFormatter.setLocalizedDateFormatFromTemplate("yyyy/MM/dd")
+        
+        return dateFormatter.string(from: updatedAt ?? Date())
+    }
 }

@@ -20,6 +20,11 @@ class CategoryDetailCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
+        let arrow = UIImage(named: "disclosure_caret")
+        self.accessoryType = .disclosureIndicator
+        self.accessoryView = UIImageView(image: arrow!)
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

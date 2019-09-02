@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WheelsUpiOSTest/CategoryDetailViewController/View/ViewControllerExtensions/CategoryDetailsViewControllerExt.swift"
-            timestampString = "589071289.5043271"
+            timestampString = "589084562.039909"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "14"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WheelsUpiOSTest/ItemDetailsViewController/VideModel/ItemDetailsViewModel.swift"
-            timestampString = "589071289.504423"
+            timestampString = "589084562.040333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "loadStringFromUrl(urlArray:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WheelsUpiOSTest/ItemDetailsViewController/VideModel/ItemDetailsViewModel.swift"
-            timestampString = "589071289.504477"
+            timestampString = "589084562.040624"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "loadStringFromUrl(urlArray:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,12 +58,170 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WheelsUpiOSTest/ItemDetailsViewController/VideModel/ItemDetailsViewModel.swift"
-            timestampString = "589071289.504523"
+            timestampString = "589084562.040696"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "loadStringFromUrl(urlArray:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WheelsUpiOSUnitTests/WheelsUpiOSUnitTests.swift"
+            timestampString = "589084562.0407619"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "WheelsUpiOSUnitTests"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WheelsUpiOSTest/Networking/HTTPLayer.swift"
+            timestampString = "589084562.041042"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "request(at:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WheelsUpiOSTest.HTTPLayer.request(at: WheelsUpiOSTest.HTTPLayer.Endpoint, completion: (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "WheelsUpiOSTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/george/Documents/XcodeProjects/Tests/WheelsUp/WheelsUpiOSTest/WheelsUpiOSTest/Networking/HTTPLayer.swift"
+                  timestampString = "589082910.7497669"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "341">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WheelsUpiOSUnitTests.HTTPLayer.request(at: WheelsUpiOSUnitTests.HTTPLayer.Endpoint, completion: (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "WheelsUpiOSUnitTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/george/Documents/XcodeProjects/Tests/WheelsUp/WheelsUpiOSTest/WheelsUpiOSTest/Networking/HTTPLayer.swift"
+                  timestampString = "589082911.3673"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "341">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WheelsUpiOSTest/Networking/HTTPLayer.swift"
+            timestampString = "589084562.041229"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "request(at:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WheelsUpiOSTest.HTTPLayer.request(at: WheelsUpiOSTest.HTTPLayer.Endpoint, completion: (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "WheelsUpiOSTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/george/Documents/XcodeProjects/Tests/WheelsUp/WheelsUpiOSTest/WheelsUpiOSTest/Networking/HTTPLayer.swift"
+                  timestampString = "589082910.756364"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "455">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in WheelsUpiOSTest.HTTPLayer.request(at: WheelsUpiOSTest.HTTPLayer.Endpoint, completion: (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "WheelsUpiOSTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/george/Documents/XcodeProjects/Tests/WheelsUp/WheelsUpiOSTest/WheelsUpiOSTest/Networking/HTTPLayer.swift"
+                  timestampString = "589082910.763906"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "61">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WheelsUpiOSUnitTests.HTTPLayer.request(at: WheelsUpiOSUnitTests.HTTPLayer.Endpoint, completion: (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "WheelsUpiOSUnitTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/george/Documents/XcodeProjects/Tests/WheelsUp/WheelsUpiOSTest/WheelsUpiOSTest/Networking/HTTPLayer.swift"
+                  timestampString = "589082911.372852"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "455">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in WheelsUpiOSUnitTests.HTTPLayer.request(at: WheelsUpiOSUnitTests.HTTPLayer.Endpoint, completion: (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "WheelsUpiOSUnitTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/george/Documents/XcodeProjects/Tests/WheelsUp/WheelsUpiOSTest/WheelsUpiOSTest/Networking/HTTPLayer.swift"
+                  timestampString = "589082911.375723"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "61">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WheelsUpiOSUnitTests/WheelsUpiOSUnitTests.swift"
+            timestampString = "589084562.04128"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "testStringFromUrlLoading()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

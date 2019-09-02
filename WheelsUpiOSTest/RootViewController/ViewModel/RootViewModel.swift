@@ -10,15 +10,15 @@ import Foundation
 
 class RootViewModel{
     
-    static let rootTitlesWereSetNotification = Notification.Name.init(rawValue: "gio.lomsa.rootRitlesWereSetNotification")
+    static let rootElementsWereSetNotification = Notification.Name.init(rawValue: "gio.lomsa.rootElementsWereSetNotification")
     
     let httpLayer = HTTPLayer()
     let networking: APIClient
     
-    var titles: [RootCategory] = []{
+    var rootElements: [RootCategory] = []{
         didSet{
             print("titles were set")
-            NotificationCenter.default.post(name: RootViewModel.rootTitlesWereSetNotification, object: nil)
+            NotificationCenter.default.post(name: RootViewModel.rootElementsWereSetNotification, object: nil)
         }
     }
     
@@ -26,19 +26,20 @@ class RootViewModel{
         networking = APIClient(httpLayer: httpLayer)
     }
     
-    func loadRoot(){
+    // load root elements
+    func loadRootElements(){
         networking.getRootObjects {[weak self] (result) in
             switch result{
             case .failure(let error):
                 print(error.localizedDescription)
-            case .success(let titles):
-                var _titles = [RootCategory]()
+            case .success(let items):
+                var _items = [RootCategory]()
                 
-                for title in titles{
-                    let rootTitle = RootCategory(name: title.key, url: title.value, category: RootCategory.SWCategoryType(rawValue: title.key) ?? RootCategory.SWCategoryType.films)
-                    _titles.append(rootTitle)
+                for title in items{
+                    let rootElement = RootCategory(name: title.key, url: title.value, category: RootCategory.SWCategoryType(rawValue: title.key) ?? RootCategory.SWCategoryType.films)
+                    _items.append(rootElement)
                 }
-                self?.titles = _titles.sorted(by: {
+                self?.rootElements = _items.sorted(by: {
                     $0.title < $1.title
                 })
             }

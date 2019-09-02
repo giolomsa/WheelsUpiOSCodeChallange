@@ -10,36 +10,29 @@ import Foundation
 
 class HTTPLayer{
     
-    let baseURLString = "https://swapi.co/api/"
+//    let baseURLString = "https://swapi.co/api/"
     let urlSession = URLSession.shared
     
     enum Endpoint{
-        case root(String)
-        case loadUrl(String)
+        case root
+        case fromUrl(String)
 
         var path: String{
             switch self {
-            case .root(_):
-                return ""
-            case .loadUrl(let url):
+            case .root:
+                return "https://swapi.co/api/"
+            case .fromUrl(let url):
                 return url
             }
         }
     }
     
     func request(at endpoint: Endpoint, completion: @escaping (Data?, URLResponse?, Error?)-> Void){
-        var fullURLString = ""
-        switch endpoint{
-        case .root(_):
-            fullURLString = baseURLString
-        case .loadUrl(_):
-            fullURLString = endpoint.path
-        }
         
-        
-        print(fullURLString)
-        let url = URL(string: fullURLString)
-        let task = urlSession.dataTask(with: url!) { (data, response, error) in
+        let urlString = endpoint.path
+                
+        guard let url = URL(string: urlString) else {return }
+        let task = urlSession.dataTask(with: url) { (data, response, error) in
             completion(data, response, error)
         }
         task.resume()

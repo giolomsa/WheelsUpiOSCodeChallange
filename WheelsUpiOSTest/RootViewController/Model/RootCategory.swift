@@ -23,7 +23,6 @@ enum SWCategoryType: String{
     var url: String
     var category: SWCategoryType
     
-    
     init(name: String, url: String, category: SWCategoryType) {
         self.title = name
         self.url = url

@@ -12,17 +12,19 @@ class CategoryDetailViewController: UIViewController {
     
     //MARK:- Variables/Constants
     var selectedCategory: RootCategory?
-    var selectedItem: Category?
-    var genericItem: GenericItem?
+    var selectedItem: CategoryElement?
+    
     let viewModel = CategoryDetailsViewMode()
 
     //MARK:- IBOutlets
     @IBOutlet weak var categoryDetailTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    //MARK:- lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //manage tableview delegate/datasource
         categoryDetailTableView.delegate = self
         categoryDetailTableView.dataSource = self
         
@@ -35,12 +37,13 @@ class CategoryDetailViewController: UIViewController {
             navigationItem.backBarButtonItem?.title = ""
             
             DispatchQueue.global(qos: .background).async {
-                self.viewModel.loadCategories(for: selectedCategory.url)
+                self.viewModel.loadCategoryElements(for: selectedCategory.url)
             }
         }
         // Do any additional setup after loading the view.
     }
 
+    //MARK:- prepare segue methos
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
             if let selectedItem = self.selectedItem,
@@ -54,7 +57,7 @@ class CategoryDetailViewController: UIViewController {
     
     //MARK:- Class methods
     private func manageObservers(){
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUIFromViewModel) , name: CategoryDetailsViewMode.categoriesWereSetNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUIFromViewModel) , name: CategoryDetailsViewMode.categoryElementsWereSetNotification, object: nil)
     }
     
     @objc private func updateUIFromViewModel(){

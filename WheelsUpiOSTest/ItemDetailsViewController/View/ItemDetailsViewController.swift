@@ -10,50 +10,38 @@ import UIKit
 
 class ItemDetailsViewController: UIViewController {
 
+    //MARK:- IBOutlets
     @IBOutlet weak var propertyContainerView: UIView!
     @IBOutlet weak var initialsBackgroundView: UIView!
     @IBOutlet weak var initialsLabel: UILabel!
     @IBOutlet weak var topYellowLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    //MARK:- Variables/Constants
     var currentCategory: RootCategory.SWCategoryType?
-    var selectedItem: Category?
-    var viewModel = CategoryDetailsViewMode()
-    var itemDetailsViewModel = ItemDetailsViewModel()
+    var selectedItem: CategoryElement?
+    var viewModel = ItemDetailsViewModel()
     
+    //MARK:- lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         manageObservers()
         customizeUI()
         
+        activityIndicator.startAnimating()
         
         if let selectedItem = selectedItem{
-            activityIndicator.startAnimating()
             DispatchQueue.global(qos: .background).async {
                 self.viewModel.loadDataFromUrl(url: selectedItem.url)
             }
-            
-            print(selectedItem.url)
-//            switch selectedItem.category{
-//            case .films:
-//                print("films were selected")
-////                viewModel.loadCategories(for: selectedItem.url)
-//            case .people:
-//                print("people selected")
-//            case .starships:
-//                print("starshipsple selected")
-//            case.vheicles:
-//                print("vheicles selected")
-//            case .species:
-//                print("species selected")
-//            case .planets:
-//                print("planets  selected")
-//            }
         }
         // Do any additional setup after loading the view.
     }
+    
+    //MARK:- class methods
     private func manageObservers(){
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUIFromViewModel) , name: CategoryDetailsViewMode.categoriesWereSetNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUIFromViewModel) , name: ItemDetailsViewModel.elementDetailsWereSetNotification, object: nil)
     }
     
     private func customizeUI(){
@@ -62,22 +50,30 @@ class ItemDetailsViewController: UIViewController {
     }
     
     @objc private func updateUIFromViewModel(){
-        if let genericItem = viewModel.genericItem{
-            var startY = 0
-            let sortedProperties = genericItem.propertyDictionary.sorted(by: {$0.key < $1.key})
+        if let elementDetailsObject = viewModel.elementDetailsObject{
+            var current = 0
+            // sort properties by key
+            let sortedProperties = elementDetailsObject.propertyDictionary.sorted(by: {$0.key < $1.key})
+            
             for property in sortedProperties{
                 DispatchQueue.main.async {
-                let width = self.view.frame.width
-            let generiView = UINib(nibName: "GenericView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
                     
-                    generiView.frame = CGRect(x: 0, y: startY, width: Int(width), height: 145)
-                    startY += 145
+                    //create view with variable
+                    let width = self.view.frame.width
                     
-                    if let keyLabel = generiView.viewWithTag(1) as? UILabel{
+                    //load property detail view from xib file
+                    let propertyDetail = UINib(nibName: "GenericView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
+                    // set view frame
+                    propertyDetail.frame = CGRect(x: 0, y: current, width: Int(width), height: 145)
+                    current += 145
+                    
+                    // set key label text
+                    if let keyLabel = propertyDetail.viewWithTag(1) as? UILabel{
                         keyLabel.text = property.key.capitalizedStringFromSnakeCase
                     }
-                    
-                    if let valueLabel = generiView.viewWithTag(2) as? UILabel{
+                    //set value label text depending on key
+                    //if value is url array, calling method which takes urlstrings array, loads titles from urls and returns array of string
+                    if let valueLabel = propertyDetail.viewWithTag(2) as? UILabel{
                         if property.key == "species" ||
                             property.key == "starships" ||
                             property.key == "films" ||
@@ -88,50 +84,55 @@ class ItemDetailsViewController: UIViewController {
                             property.key == "residents"{
 
                             DispatchQueue.global(qos: .background).async {
-                                self.itemDetailsViewModel.loadStringFromUrl(urlArray: property.value as! [String], completion: {[weak valueLabel] (value) in
+                                self.viewModel.loadStringFromUrl(urlArray: property.value as! [String], completion: {[weak valueLabel] (value) in
                                     DispatchQueue.main.async {
                                         valueLabel?.text = value.count > 0 ? value.joined(separator: ", ") : "N/A"
                                     }
                                 })
                             }
+                        }else if property.key == "created" ||
+                            property.key == "edited"{
+                            // converting to datelocalestring from iso8601
+                            valueLabel.text = (property.value as? String)?.iso8601StringToLocaleDateString
                         }else{
+                            // set key label text for other properties
                             valueLabel.text = (property.value as? String ?? "N/A").capitalized
                         }
-                        
                     }
-                    
-                    self.propertyContainerView.addSubview(generiView)
+                    // add custom view to container view
+                    self.propertyContainerView.addSubview(propertyDetail)
                 }
-                
-                
             }
             
-            if let name = genericItem.propertyDictionary["name"] as? String{
+            //set view title and initials label depending on category
+            if let name = elementDetailsObject.propertyDictionary["name"] as? String{
                 DispatchQueue.main.async {
                     self.navigationItem.title = name.uppercased()
                     self.initialsLabel.text = name.firstAndSecondWordFirstLetters
                 }
             }
-            
-            if let title = genericItem.propertyDictionary["title"] as? String{
+            //set view title and initials label depending on category
+            if let title = elementDetailsObject.propertyDictionary["title"] as? String{
                 DispatchQueue.main.async {
                     self.navigationItem.title = title.uppercased()
                     self.initialsLabel.text = title.firstAndSecondWordFirstLetters
                 }
             }
             
-            setHeaderLabel()
+            setDescriptionLabel()
             
         }
+        // stop and hide activity indicator after setting all properties
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
             self.activityIndicator.isHidden = true
         }
     }
     
-    private func setHeaderLabel(){
+    //set description label depending on category
+    private func setDescriptionLabel(){
         if let selectedCategory = currentCategory,
-            let propertiesDictionary = viewModel.genericItem?.propertyDictionary{
+            let propertiesDictionary = viewModel.elementDetailsObject?.propertyDictionary{
                         switch selectedCategory{
                         case .films:
                             if let openintCrowl = propertiesDictionary["opening_crawl"] as? String{
@@ -162,10 +163,9 @@ class ItemDetailsViewController: UIViewController {
                                 DispatchQueue.main.async {
                                     self.topYellowLabel.text = diameter.capitalizedStringFromSnakeCase
                                 }
-                            }
-                        }
+                            }                        
+            }
         }
     }
-    
 }
 

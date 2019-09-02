@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DetailItem: Codable{
+class DetailsItem: Codable{
     var name: String?
     var title: String?
 }

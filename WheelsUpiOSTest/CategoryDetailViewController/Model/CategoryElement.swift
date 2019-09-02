@@ -8,12 +8,7 @@
 
 import Foundation
 
-class Category: Codable{
-    
-//    enum CodingKeys: String, CodingKey{
-//        case birthYear = "birth_year"
-//        case openingCrawl = "opening_crawl"
-//    }
+class CategoryElement: Codable{
     
     var title: String?
     var name: String?
@@ -27,6 +22,6 @@ class Category: Codable{
 }
 
 class CategoriesResults:Codable{
-    var results: [Category]
+    var results: [CategoryElement]
     
 }
